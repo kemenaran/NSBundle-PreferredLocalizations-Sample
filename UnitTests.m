@@ -26,10 +26,10 @@
                          @"A country variant in the preferences array fallbacks on the generic language");
     
     // Some failing tests, that IMHO should pass
-    STAssertEqualObjects([NSBundle preferredLocalizationsFromArray:(@[@"de", @"en-GB"]) forPreferences:@[@"en-CA"]], @[@"en"],
-                         @"A unavailable country variant should fallback on the generic language"); // returns "de" (unexpected)
+    STAssertEqualObjects([NSBundle preferredLocalizationsFromArray:(@[@"de", @"en-GB"]) forPreferences:@[@"en-CA"]], @[@"en-GB"],
+                         @"A unavailable country variant should fallback on another country variant of the same language"); // returns "de" (unexpected)
     
-    STAssertEqualObjects([NSBundle preferredLocalizationsFromArray:(@[@"de", @"en-GB"]) forPreferences:@[@"en"]], @[@"en"],
+    STAssertEqualObjects([NSBundle preferredLocalizationsFromArray:(@[@"de", @"en-GB"]) forPreferences:@[@"en"]], @[@"en-GB"],
                          @"An unavailable generic language should fallback on a country variant"); // returns "de" (unexpected)
     
     STAssertEquals([[[NSBundle preferredLocalizationsFromArray:(@[@"de", @"en-US"]) forPreferences:@[@"en"]] objectAtIndex:0] hasPrefix:@"en"],
